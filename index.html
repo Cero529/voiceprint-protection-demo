@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imperceptible Voiceprint Protection - Demo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f9f9f9;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+
+        .authors {
+            font-size: 1em;
+            color: #555;
+            margin: 15px 0;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 20px;
+            margin: 5px;
+            background: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 0.9em;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 40px 0 20px 0;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .stage-description {
+            background: #ecf0f1;
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+
+        .demo-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+        }
+
+        .demo-table th {
+            background: #34495e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-weight: 600;
+            border: 1px solid #2c3e50;
+        }
+
+        .demo-table td {
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+            vertical-align: middle;
+        }
+
+        .demo-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .audio-label {
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 0.9em;
+        }
+
+        audio {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .method-label {
+            font-weight: 600;
+            color: #555;
+            background: #e8f4f8;
+            padding: 8px;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid #ddd;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.5em;
+            }
+
+            .demo-table {
+                font-size: 0.85em;
+            }
+
+            .demo-table td {
+                padding: 10px;
+            }
+
+            audio {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Imperceptible Voiceprint Protection via Human-Machine Perception Discrepancy Feature Disentanglement</h1>
+            <div class="authors">
+                Chenlong Xue, Meng Sun, Qiang Zhang, Xiongwei Zhang, Kunyuan Li, Yuan Liao, Xiaoyi Ge, Kui Yao
+            </div>
+        </header>
+
+        <!-- Stage 1: Disentanglement-Reconstruction -->
+        <h2>Stage 1: Disentanglement-Reconstruction Training</h2>
+        <div class="stage-description">
+            <strong>Goal:</strong> Decompose speech into independent content and speaker representations through an information bottleneck.
+            The AutoVC-based network learns to separate linguistic content from speaker identity.
+        </div>
+
+        <table class="demo-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Speaker</th>
+                    <th style="width: 25%;">Original Speech</th>
+                    <th style="width: 25%;">Reconstructed Speech</th>
+                    <th style="width: 35%;">Voice Conversion<br>(Different Speaker)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Male 1</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male1_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male1_reconstructed.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male1_converted.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Female 1</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female1_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female1_reconstructed.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female1_converted.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Male 2</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male2_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male2_reconstructed.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_male2_converted.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Female 2</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female2_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female2_reconstructed.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage1_female2_converted.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Stage 2: Defensive Perturbation Generation -->
+        <h2>Stage 2: Defensive Perturbation Generation</h2>
+        <div class="stage-description">
+            <strong>Goal:</strong> Generate adversarial perturbations in the speaker embedding space to protect against voice cloning attacks.
+            Protected speech sounds identical to humans but prevents machines from extracting speaker identity.
+        </div>
+
+        <table class="demo-table">
+            <thead>
+                <tr>
+                    <th style="width: 15%;">Speaker</th>
+                    <th style="width: 20%;">Original Speech</th>
+                    <th style="width: 20%;">Protected Speech</th>
+                    <th style="width: 20%;">Cloned from Original</th>
+                    <th style="width: 25%;">Cloned from Protected<br>(Attack Failed)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Male 1</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male1_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male1_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male1_cloned_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male1_cloned_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Female 1</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female1_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female1_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female1_cloned_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female1_cloned_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Male 2</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male2_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male2_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male2_cloned_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_male2_cloned_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><strong>Female 2</strong></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female2_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female2_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female2_cloned_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/stage2_female2_cloned_protected.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Comparison with Baselines -->
+        <h2>Comparison with Baseline Methods</h2>
+        <div class="stage-description">
+            Comparison of audio quality after protection. Our method maintains higher perceptual quality (MOS: 4.18) 
+            while achieving effective defense (DSR: 87.2%).
+        </div>
+
+        <table class="demo-table">
+            <thead>
+                <tr>
+                    <th style="width: 20%;">Method</th>
+                    <th style="width: 20%;">Original</th>
+                    <th style="width: 20%;">VoiceGuard</th>
+                    <th style="width: 20%;">RoVo</th>
+                    <th style="width: 20%;">Ours</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><div class="method-label">Example 1</div></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison1_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison1_voiceguard.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison1_rovo.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison1_ours.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="method-label">Example 2</div></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison2_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison2_voiceguard.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison2_rovo.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison2_ours.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+                <tr>
+                    <td><div class="method-label">Example 3</div></td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison3_original.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison3_voiceguard.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison3_rovo.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                    <td>
+                        <audio controls>
+                            <source src="samples/comparison3_ours.wav" type="audio/wav">
+                        </audio>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <footer>
+            <p>Imperceptible Voiceprint Protection via Human-Machine Perception Discrepancy Feature Disentanglement</p>
+            <p>Published with <a href="https://docs.github.com/en/pages" target="_blank" style="color: #3498db; text-decoration: none;">GitHub Pages</a></p>
+        </footer>
+    </div>
+</body>
+</html>
